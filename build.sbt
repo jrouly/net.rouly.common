@@ -3,9 +3,12 @@ import Dependencies._
 name := "lib-common"
 
 lazy val commonSettings = Seq(
+  isSnapshot := true,
   organization := "net.rouly",
-  version := "0.0.1",
-  scalaVersion := "2.12.2"
+  scalaVersion := "2.12.2",
+  scalacOptions ++= Seq("-Xfatal-warnings"),
+  scalacOptions in (Compile, doc) ++= Seq("-no-link-warnings"),
+  version := "0.0.1"
 )
 
 lazy val root = (project in file("."))
@@ -19,17 +22,14 @@ lazy val root = (project in file("."))
 lazy val `lib-common` = project
   .settings(commonSettings)
   .settings(libraryDependencies ++= Seq(
+    Common.logback,
+    Common.scalaLogging,
     Common.scalaTest
   ))
 
 lazy val `lib-common-server` = project
   .dependsOn(`lib-common`)
   .settings(commonSettings)
-  .settings(libraryDependencies ++= Seq(
-    Common.logback,
-    Common.scalaLogging,
-    Common.scalaTest
-  ))
 
 lazy val `lib-common-server-play26` = project
   .enablePlugins(PlayScala)
