@@ -3,7 +3,6 @@ import Dependencies._
 name := "lib-common"
 
 lazy val commonSettings = Seq(
-  isSnapshot := true,
   organization := "net.rouly",
   scalaVersion := "2.12.2",
   scalacOptions ++= Seq("-Xfatal-warnings"),
@@ -15,7 +14,6 @@ lazy val root = (project in file("."))
   .settings(commonSettings)
   .aggregate(
     `lib-common`,
-    `lib-common-server`,
     `lib-common-server-play26`
   )
 
@@ -27,13 +25,8 @@ lazy val `lib-common` = project
     Common.scalaTest
   ))
 
-lazy val `lib-common-server` = project
-  .dependsOn(`lib-common`)
-  .settings(commonSettings)
-
 lazy val `lib-common-server-play26` = project
-  .enablePlugins(PlayScala)
-  .dependsOn(`lib-common-server`)
+  .dependsOn(`lib-common`)
   .settings(commonSettings)
   .settings(libraryDependencies ++= Seq(
     Play26.playJson,
