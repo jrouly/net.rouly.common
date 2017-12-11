@@ -7,7 +7,7 @@ Versioned together.
 
 Common code with no Play dependency.
 
-```
+```scala
 libraryDependencies += "net.rouly" % "lib-common" % "0.0.1"
 ```
 
@@ -15,6 +15,6 @@ libraryDependencies += "net.rouly" % "lib-common" % "0.0.1"
 
 Common server-side code with dependency on Play 2.6.
 
-```
+```scala
 libraryDependencies += "net.rouly" % "lib-common-server-play26" % "0.0.1"
 ```
