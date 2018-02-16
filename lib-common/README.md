@@ -13,3 +13,29 @@ class MyConfig extends Configuration
   with PropertiesConfiguration
   with LoggingConfiguration
 ```
+
+## Timing
+
+`TimingImplicit` introduces functionality for measuring execution time of operations.
+Supports exception handling (through `Try`) as well.
+
+```scala
+val op: (A => B) = ???
+val (b, duration) = op.timedApply(a)
+val (tryB, duration) = op.timedApplySafe(a)
+```
+
+```scala
+val f: Future[T] = ???
+f.withDuration((t, duration) => println(duration))
+f.withDurationSafe((tryT, duration) => println(duration))
+```
+
+## Ternary Operator
+
+`TernaryOperator` implements a basic scala ternary operator.
+
+```scala
+import TernaryOperator._
+true ? 15 | "foo"
+```
