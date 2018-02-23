@@ -14,6 +14,13 @@ object Dependencies {
 
   }
 
+  object Database {
+
+    val slickVersion = "3.2.1"
+
+    lazy val slick = "com.typesafe.slick" %% "slick" % slickVersion
+  }
+
   object Play26 {
 
     val playVersion = "2.6.5"

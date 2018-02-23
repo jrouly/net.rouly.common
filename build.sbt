@@ -20,6 +20,7 @@ lazy val root = (project in file("."))
   .settings(noPublish)
   .aggregate(
     `lib-common`,
+    `lib-common-database`,
     `lib-common-server-play26`
   )
 
@@ -32,11 +33,20 @@ lazy val `lib-common` = project
     Common.scalaTest
   ))
 
+lazy val `lib-common-database` = project
+  .dependsOn(`lib-common`)
+  .settings(commonSettings)
+  .settings(RoulyNet.publish)
+  .settings(libraryDependencies ++= Seq(
+    Database.slick
+  ))
+
 lazy val `lib-common-server-play26` = project
   .dependsOn(`lib-common`)
   .settings(commonSettings)
   .settings(RoulyNet.publish)
   .settings(libraryDependencies ++= Seq(
+    Common.scalaTest,
     Play26.playJson,
     Play26.playServer,
     Play26.playTest
