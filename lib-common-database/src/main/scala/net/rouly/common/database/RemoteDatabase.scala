@@ -13,11 +13,13 @@ class RemoteDatabase(
   name: String = "default"
 )(implicit protected val executionContext: ExecutionContext) extends ApplicationDatabase {
 
-  private val user = configuration.get(s"db.$name.username", "postgres")
-  private val password = configuration.get(s"db.$name.password", "")
+  private val dbConfig = configuration.sub(s"db.$name")
 
-  private val host = configuration.get(s"db.$name.host", "localhost")
-  private val port = configuration.getInt(s"db.$name.port", 5432)
+  private val user = dbConfig.get(s"username", "postgres")
+  private val password = dbConfig.get(s"password", "")
+  private val host = dbConfig.get(s"host", "localhost")
+  private val port = dbConfig.getInt(s"port", 5432)
+
   private val url = s"jdbc:postgresql://$host:$port/$name"
 
   private val keepAlive = configuration.getBoolean("database.keepAlive", false)
