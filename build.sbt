@@ -11,8 +11,8 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.2",
   scalacOptions ++= Seq("-Xfatal-warnings"),
   scalacOptions in (Compile, doc) ++= Seq("-no-link-warnings"),
-  version := "0.0.5",
-  isSnapshot := false
+  version := "0.0.6-SNAPSHOT",
+  isSnapshot := true
 )
 
 lazy val root = (project in file("."))

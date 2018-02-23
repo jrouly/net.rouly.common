@@ -18,14 +18,16 @@ abstract class Configuration {
   /**
     * @throws IllegalArgumentException If the identified configuration cannot be parsed as a boolean.
     */
-  def getBoolean(key: String, default: => Boolean): Boolean = getT(key, default)(_.toBoolean)
+  final def getBoolean(key: String, default: => Boolean): Boolean = getT(key, default)(_.toBoolean)
 
   /**
     * @throws IllegalArgumentException If the identified configuration cannot be parsed as an Int.
     */
-  def getInt(key: String, default: => Int): Int = getT(key, default)(_.toInt)
+  final def getInt(key: String, default: => Int): Int = getT(key, default)(_.toInt)
 
-  protected def getT[T](key: String, default: => T)(to: String => T, from: T => String = (t: T) => t.toString): T =
+  final def sub(prefix: String): Configuration = new PrefixedConfiguration(prefix, this)
+
+  final protected def getT[T](key: String, default: => T)(to: String => T, from: T => String = (t: T) => t.toString): T =
     to(get(key, from(default)))
 
 }

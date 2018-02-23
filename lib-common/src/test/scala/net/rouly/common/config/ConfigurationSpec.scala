@@ -65,5 +65,12 @@ class ConfigurationSpec extends FunSpec with Matchers {
       }
     }
 
+    describe("sub") {
+      it("should get sub-configurations") {
+        val config = MemoryConfiguration(Map("a.b.c" -> "foo", "c" -> "bar")).sub("a.b")
+        config.get("c", "default") shouldEqual "foo"
+      }
+    }
+
   }
 }
