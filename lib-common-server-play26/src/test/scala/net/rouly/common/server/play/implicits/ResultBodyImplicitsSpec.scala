@@ -2,7 +2,7 @@ package net.rouly.common.server.play.implicits
 
 import akka.actor.ActorSystem
 import akka.stream.{ActorMaterializer, Materializer}
-import net.rouly.common.server.play.implicits.ResponseBodyImplicits._
+import net.rouly.common.server.play.implicits.ResultBodyImplicits._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{FunSpec, Matchers}
 import play.api.http.Status._
@@ -11,7 +11,7 @@ import play.api.mvc.Result
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ResponseBodyImplicitsSpec
+class ResultBodyImplicitsSpec
   extends FunSpec
   with ScalaFutures
   with Matchers {
@@ -29,7 +29,7 @@ class ResponseBodyImplicitsSpec
 
     describe("JsonResponse") {
       it("should turn an object with a writes into a 200 OK json string") {
-        val response = body.toJsonResponse
+        val response = body.toJsonResult
         status(response) shouldEqual OK
         body(response) shouldEqual Json.stringify(Json.toJson(body))
       }
@@ -37,7 +37,7 @@ class ResponseBodyImplicitsSpec
 
     describe("AsyncJsonResponse") {
       it("should eventually turn an object with a writes into a 200 OK json string") {
-        val response = Future.successful(body).toJsonResponse.futureValue
+        val response = Future.successful(body).toJsonResult.futureValue
         status(response) shouldEqual OK
         body(response) shouldEqual Json.stringify(Json.toJson(body))
       }

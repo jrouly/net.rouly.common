@@ -22,11 +22,11 @@ trait ApplicationDatabase extends StrictLogging {
     */
   def runWithLogging[R](name: String)(action: DBIOAction[R, NoStream, Nothing]): Future[R] = {
     database.run(action).withDurationSafe {
-      case (Success(_), duration) => logger.trace(s"""Executed db query "$name duration=${duration.toMillis.toString}ms""")
-      case (Failure(ex), duration) => logger.warn(s"""Executed db query "$name FAILED duration=${duration.toMillis.toString}ms""", ex)
+      case (Success(_), duration) => logger.trace(s"""Executed db query "$name" duration=${duration.toMillis.toString}ms""")
+      case (Failure(ex), duration) => logger.warn(s"""Executed db query "$name" FAILED duration=${duration.toMillis.toString}ms""", ex)
     }
   }
 
-  def run[R](name: String)(action: DBIOAction[R, NoStream, Nothing]): Future[R] = database.run(action)
+  def run[R](action: DBIOAction[R, NoStream, Nothing]): Future[R] = database.run(action)
 
 }

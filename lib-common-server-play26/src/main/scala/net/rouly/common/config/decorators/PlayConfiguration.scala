@@ -16,6 +16,6 @@ trait PlayConfiguration extends Configuration {
   }
 
   private def getPlayConfig(key: String, default: => String): String =
-    Try(config.getString(key)).getOrElse(default)
+    Try(config.resolve().getString(key)).getOrElse(default)
 
 }
