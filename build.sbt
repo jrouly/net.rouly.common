@@ -1,10 +1,7 @@
+import Bintray._
 import Dependencies._
-import Repositories._
 
 name := "lib-common"
-
-// Publish settings.
-resolvers += RoulyNet.release
 
 lazy val noPublish = Seq(
   publishArtifact := false,
@@ -18,9 +15,9 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.2",
   scalacOptions ++= Seq("-Xfatal-warnings"),
   scalacOptions in (Compile, doc) ++= Seq("-no-link-warnings"),
-  version := "0.0.9",
+  version := "0.0.10",
   isSnapshot := false
-)
+) ++ bintraySettings
 
 lazy val root = (project in file("."))
   .settings(commonSettings)
@@ -55,3 +52,5 @@ lazy val `lib-common-server-play26` = project
     Play26.playServer,
     Play26.playTest
   ))
+
+resolvers += Resolver.bintrayRepo("jrouly", "sbt-release")
