@@ -9,7 +9,7 @@ import scala.concurrent.ExecutionContext
 class ConfiguredDatabase(
   path: String,
   config: Config = ConfigFactory.load()
-)(implicit protected val executionContext: ExecutionContext) extends ApplicationDatabase {
+)(implicit protected val executionContext: DatabaseExecutionContext) extends ApplicationDatabase {
 
   protected lazy val database: JdbcBackend.DatabaseDef = Database.forConfig(path, config)
 

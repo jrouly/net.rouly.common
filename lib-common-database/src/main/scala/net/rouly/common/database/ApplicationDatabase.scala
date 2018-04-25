@@ -10,7 +10,7 @@ import scala.util.{Failure, Success}
 
 trait ApplicationDatabase extends StrictLogging {
 
-  protected implicit def executionContext: ExecutionContext
+  protected implicit def executionContext: DatabaseExecutionContext
 
   /**
     * Underlying slick database instance.
@@ -23,7 +23,7 @@ trait ApplicationDatabase extends StrictLogging {
   def runWithLogging[R](name: String)(action: DBIOAction[R, NoStream, Nothing]): Future[R] = {
     database.run(action).withDurationSafe {
       case (Success(_), duration) => logger.trace(s"""Executed db query "$name" duration=${duration.toMillis.toString}ms""")
-      case (Failure(ex), duration) => logger.warn(s"""Executed db query "$name" FAILED duration=${duration.toMillis.toString}ms""", ex)
+      case (Failure(ex), duration) => logger.warn(s"""Executed db query "$name" duration=${duration.toMillis.toString}ms""", ex)
     }
   }
 

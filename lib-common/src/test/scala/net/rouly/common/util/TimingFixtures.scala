@@ -9,7 +9,7 @@ trait TimingFixtures extends Matchers {
 
   implicit val ec = ExecutionContext.Implicits.global
 
-  val TestDuration = 5
+  val TestDuration = 10
   def testDuration(d: Duration, expected: Int = TestDuration - 1) = d.toMillis.toInt should be >= expected
 
 }

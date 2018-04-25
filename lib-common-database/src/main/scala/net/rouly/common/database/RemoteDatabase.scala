@@ -9,7 +9,7 @@ import scala.concurrent.ExecutionContext
 class RemoteDatabase(
   configuration: RemoteDatabaseConfiguration,
   driver: JdbcProfile
-)(implicit protected val executionContext: ExecutionContext) extends ApplicationDatabase {
+)(implicit protected val executionContext: DatabaseExecutionContext) extends ApplicationDatabase {
 
   protected lazy val database: JdbcBackend.DatabaseDef = Database.forURL(
     url = configuration.url,
