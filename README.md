@@ -5,7 +5,15 @@
 Common code and components I've reused.
 Versioned together.
 
-## lib-common
+## Installation
+
+```scala
+resolvers += Resolver.bintrayRepo("jrouly", "sbt-release")
+```
+
+## Packages
+
+### lib-common
 
 Common code with no significant dependencies.
 
@@ -13,7 +21,7 @@ Common code with no significant dependencies.
 libraryDependencies += "net.rouly" % "lib-common" % "x.x.x"
 ```
 
-## lib-common-database
+### lib-common-database
 
 Database interaction code with dependency on [Slick](http://slick.lightbend.com).
 
@@ -21,7 +29,7 @@ Database interaction code with dependency on [Slick](http://slick.lightbend.com)
 libraryDependencies += "net.rouly" % "lib-common-database" % "x.x.x"
 ```
 
-## lib-common-server-play26
+### lib-common-server-play26
 
 Common server-side code with dependency on [Play 2.6](https://www.playframework.com/documentation/2.6.x/Home).
 
