@@ -1,18 +1,21 @@
 package net.rouly.common.server.play.filters
 
 import akka.stream.Materializer
-import play.api.http.DefaultHttpFilters
-import play.api.mvc._
+import play.api.http.HttpFilters
+import play.api.mvc.EssentialFilter
 
 import scala.concurrent.ExecutionContext
 
-class ApplicationHttpFilters(filters: EssentialFilter*) extends DefaultHttpFilters(filters: _*)
+class ApplicationHttpFilters(val filters: EssentialFilter*) extends HttpFilters
 
 object ApplicationHttpFilters {
-  def commonFilters(implicit mat: Materializer, executionContext: ExecutionContext): List[EssentialFilter] = List(
-    new RequestLoggingFilter
-  )
 
-  class CommonHttpFilters(implicit mat: Materializer, executionContext: ExecutionContext)
-    extends ApplicationHttpFilters(commonFilters: _*)
+  def apply(filters: EssentialFilter*): ApplicationHttpFilters = new ApplicationHttpFilters(filters: _*)
+
+  def commonFilters(
+    implicit
+    mat: Materializer,
+    executionContext: ExecutionContext
+  ): List[EssentialFilter] = List(new RequestLoggingFilter)
+
 }

@@ -1,7 +1,7 @@
 package net.rouly.common.server.play.module
 
 import play.api.ApplicationLoader.Context
-import play.api.{ApplicationLoader, _}
+import play.api.{Application, ApplicationLoader, LoggerConfigurator}
 
 trait AppServerLoader extends ApplicationLoader {
 
