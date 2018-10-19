@@ -5,14 +5,13 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh "${tool 'sbt-0.13.15'}/bin/sbt -no-colors compile test:compile"
+        sh 'echo "hello world"'
       }
     }
 
     stage('Test') {
       steps {
-        sh "${tool 'sbt-0.13.15'}/bin/sbt -no-colors test"
-        junit '**/target/test-reports/*.xml'
+        sh 'echo "hello world"'
       }
     }
 
@@ -20,10 +19,11 @@ pipeline {
 
   post {
     success {
-      echo "Successfully build."
+      echo "Build successful."
     }
+
     failure {
-      echo "Unknown build failure."
+      echo "Build failure."
     }
   }
 
