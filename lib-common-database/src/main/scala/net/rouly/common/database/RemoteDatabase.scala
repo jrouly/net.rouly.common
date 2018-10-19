@@ -4,8 +4,6 @@ import slick.jdbc.JdbcBackend._
 import slick.jdbc.{JdbcBackend, JdbcProfile}
 import slick.util.AsyncExecutor
 
-import scala.concurrent.ExecutionContext
-
 class RemoteDatabase(
   configuration: RemoteDatabaseConfiguration,
   driver: JdbcProfile

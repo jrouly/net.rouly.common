@@ -5,7 +5,7 @@ import net.rouly.common.util.TimingImplicits.TimeableFuture
 import slick.dbio.{DBIOAction, NoStream}
 import slick.jdbc.JdbcBackend
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 trait ApplicationDatabase extends StrictLogging {
