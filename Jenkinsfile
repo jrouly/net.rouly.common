@@ -13,7 +13,7 @@ pipeline {
   stages {
 
     stage('Build and Test') {
-      agent { docker { image 'jrouly/sbt:0.13.15' } }
+      agent { docker { image 'jrouly/sbt:0.13.17' } }
       steps {
         sh sbt('compile test')
       }
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Publish') {
       when { branch 'master' }
-      agent { docker { image 'jrouly/sbt:0.13.15' } }
+      agent { docker { image 'jrouly/sbt:0.13.17' } }
       steps {
         sh sbt('publish')
       }
