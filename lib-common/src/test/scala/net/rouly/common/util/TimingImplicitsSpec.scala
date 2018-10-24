@@ -12,7 +12,7 @@ class TimingImplicitsSpec
   with TryValues
   with ScalaFutures {
 
-  describe("TimingImplicits") {
+  ignore("TimingImplicits") {
 
     describe("TimeableOp") {
 

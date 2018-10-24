@@ -1,17 +1,29 @@
+def sbt(params) {
+  return "sbt -Dsbt.global.base=.sbt -Dsbt.boot.directory=.sbt -Dsbt.ivy.home=.ivy2 $params"
+}
+
 pipeline {
   agent any
 
+  options {
+    timeout(time: 10, unit: 'MINUTES')
+    ansiColor('xterm')
+  }
+
   stages {
 
-    stage('Build') {
+    stage('Build and Test') {
+      agent { docker { image 'jrouly/sbt:0.13.15' } }
       steps {
-        sh 'echo "hello world"'
+        sh sbt('compile test')
       }
     }
 
-    stage('Test') {
+    stage('Publish') {
+      when { branch 'master' }
+      agent { docker { image 'jrouly/sbt:0.13.15' } }
       steps {
-        sh 'echo "hello world"'
+        sh sbt('publish')
       }
     }
 
@@ -19,11 +31,9 @@ pipeline {
 
   post {
     success {
-      echo "Build successful."
-    }
-
-    failure {
-      echo "Build failure."
+      script {
+        currentBuild.description = "Success"
+      }
     }
   }
 

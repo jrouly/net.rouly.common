@@ -15,7 +15,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.2",
   scalacOptions ++= Seq("-Xfatal-warnings"),
   scalacOptions in (Compile, doc) ++= Seq("-no-link-warnings"),
-  version := "0.0.12",
+  version := "0.0.13",
   isSnapshot := false
 ) ++ bintraySettings
 

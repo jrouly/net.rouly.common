@@ -11,7 +11,7 @@ class TimingSpec
   with TryValues
   with ScalaFutures {
 
-  describe("Timing") {
+  ignore("Timing") {
 
     describe("op") {
 
