@@ -5,7 +5,8 @@ object Bintray {
 
   lazy val bintraySettings = Seq(
     bintrayPackageLabels := Seq("scala"),
-    bintrayRepository := "sbt-release"
+    bintrayRepository := "sbt-release",
+    bintrayVcsUrl := Some("git@github.com:jrouly/net.rouly.common")
   )
 
 }
