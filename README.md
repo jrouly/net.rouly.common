@@ -1,5 +1,6 @@
 # lib-common
 
+[![Build Status](https://jenkins.rouly.net/buildStatus/icon?job=net.rouly.common/master)](https://jenkins.rouly.net/job/net.rouly.common/job/master/)
 [![Download](https://api.bintray.com/packages/jrouly/sbt-release/lib-common/images/download.svg)](https://bintray.com/jrouly/sbt-release/lib-common/_latestVersion)
 
 Common code and components I've reused.
