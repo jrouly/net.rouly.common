@@ -23,7 +23,7 @@ pipeline {
       when { branch 'master' }
       agent { docker { image 'jrouly/sbt:0.13.17' } }
       steps {
-        sh sbt('publish')
+        sh sbt('+ publish')
       }
     }
 
