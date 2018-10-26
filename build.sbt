@@ -12,10 +12,11 @@ lazy val noPublish = Seq(
 lazy val commonSettings = Seq(
   licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
   organization := "net.rouly",
+  crossScalaVersions := Seq("2.11.12", "2.12.2"),
   scalaVersion := "2.12.2",
   scalacOptions ++= Seq("-Xfatal-warnings"),
   scalacOptions in (Compile, doc) ++= Seq("-no-link-warnings"),
-  version := "0.0.13",
+  version := "0.0.14",
   isSnapshot := false
 ) ++ bintraySettings
 
