@@ -15,7 +15,7 @@ pipeline {
     stage('Build and Test') {
       agent { docker { image 'jrouly/sbt:0.13.17' } }
       steps {
-        sh sbt('compile test')
+        sh sbt('+compile +test')
       }
     }
 
@@ -23,7 +23,11 @@ pipeline {
       when { branch 'master' }
       agent { docker { image 'jrouly/sbt:0.13.17' } }
       steps {
-        sh sbt('+ publish')
+        script {
+          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jrouly-bintray', usernameVariable: 'BINTRAY_USER', passwordVariable: 'BINTRAY_PASS']]) {
+            sh sbt('+publish')
+          }
+        }
       }
     }
 
